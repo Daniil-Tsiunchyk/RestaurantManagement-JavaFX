@@ -1,7 +1,7 @@
 package com.example.restaurantmanagement;
 
 import java.io.*;
-import java.net.*;
+import java.net.Socket;
 
 public class ServerThread extends Thread {
     private final Socket socket;

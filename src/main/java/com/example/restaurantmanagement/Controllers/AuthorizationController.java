@@ -1,13 +1,18 @@
 package com.example.restaurantmanagement.Controllers;
 
 import com.example.restaurantmanagement.Client;
+import com.example.restaurantmanagement.Database.StaffService;
 import com.example.restaurantmanagement.Enums.Role;
+import com.example.restaurantmanagement.Utils.FxUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
+
 
 public class AuthorizationController {
     @FXML
@@ -26,7 +31,7 @@ public class AuthorizationController {
     }
 
     @FXML
-    public void handleLogin() {
+    public void handleLogin() throws SQLException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -35,24 +40,17 @@ public class AuthorizationController {
             return;
         }
 
-        Role role = requestRoleFromServer(username, password);
+        Role role = StaffService.requestRoleFromDataBase(username, password);
 
         if (role == null) {
             statusLabel.setText("Invalid username or password.");
             return;
-        }
+        } else statusLabel.setText(String.valueOf(role));
 
         openRoleInterface(role);
     }
 
-    private Role requestRoleFromServer(String username, String password) {
-        // Реализуйте метод для отправки запроса на сервер и получения роли пользователя
-        return null;
-    }
-
     private void openRoleInterface(Role role) {
-        // Реализуйте метод для открытия интерфейса в зависимости от роли пользователя
-        // и закрытия окна авторизации
         Stage stage = (Stage) loginButton.getScene().getWindow();
         FxUtils.openRoleInterface(role, stage);
     }

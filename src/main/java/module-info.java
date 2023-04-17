@@ -12,4 +12,6 @@ module com.example.restaurantmanagement {
     opens com.example.restaurantmanagement.Entities to javafx.fxml;
     exports com.example.restaurantmanagement.Enums;
     opens com.example.restaurantmanagement.Enums to javafx.fxml;
+    exports com.example.restaurantmanagement.Utils;
+    opens com.example.restaurantmanagement.Utils to javafx.fxml;
 }

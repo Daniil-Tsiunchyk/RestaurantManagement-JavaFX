@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="292.0" prefWidth="238.0" spacing="20.0" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.restaurantmanagement.Controllers.WaiterMainMenuController">
+    <cursor>
+        <Cursor fx:constant="OPEN_HAND"/>
+    </cursor>
+    <Label text="Hello, {name}"/>
+    <Button mnemonicParsing="false" onAction="#handleCreateOrder" prefWidth="120.0" text="Create Order">
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+    </Button>
+    <Button mnemonicParsing="false" onAction="#handleUpdateOrder" prefWidth="120.0" text="Update Order"/>
+    <Button mnemonicParsing="false" onAction="#handleDeleteOrder" prefWidth="120.0" text="Delete Order"/>
+    <Button mnemonicParsing="false" onAction="#handleViewOrders" prefWidth="120.0" text="View Orders"/>
+    <Button mnemonicParsing="false" onAction="#handleLogout" prefWidth="120.0" text="Logout"/>
+</VBox>

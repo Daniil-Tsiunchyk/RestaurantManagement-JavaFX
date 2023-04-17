@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.restaurantmanagement.Controllers.KitchenWorkController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="334.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.restaurantmanagement.Controllers.KitchenWorkController">
+    <Label layoutX="416.0" layoutY="14.0" text="На выдачу"/>
+    <Label layoutX="125.0" layoutY="14.0" text="Заказы в очереди"/>
+    <TableView fx:id="ready_tabe" layoutX="405.0" layoutY="38.0" prefHeight="230.0" prefWidth="79.0">
+        <columns>
+            <TableColumn fx:id="ready_number_column" prefWidth="75.99994659423828" text="№"/>
+        </columns>
+    </TableView>
+    <TableView fx:id="cooking_table" layoutX="26.0" layoutY="45.0" prefHeight="200.0" prefWidth="298.0">
+        <columns>
+            <TableColumn fx:id="cooking_number_column" prefWidth="34.40002250671387" text="№"/>
+            <TableColumn fx:id="name_column" prefWidth="145.59998321533203" text="Название"/>
+            <TableColumn fx:id="category_column" prefWidth="115.199951171875" text="Категория"/>
+        </columns>
+    </TableView>
+    <Separator layoutX="369.0" layoutY="23.0" orientation="VERTICAL" prefHeight="300.0"/>
+    <Button layoutX="224.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus"
+            text="Update Order Status">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND"/>
+        </cursor>
+    </Button>
+    <Button layoutX="145.0" layoutY="279.0" mnemonicParsing="false" onAction="#handeGetInfo" text="Get Info">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND"/>
+        </cursor>
+    </Button>
+    <Button layoutX="26.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleStartCooking"
+            text="Start Cooking">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND"/>
+        </cursor>
+    </Button>
+    <Button layoutX="418.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND"/>
+        </cursor>
+    </Button>
 </AnchorPane>
