@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
+
 public class WaiterJobController {
 
     @FXML
@@ -28,10 +30,9 @@ public class WaiterJobController {
 
 
     @FXML
-    void initialize() {
 
-    }
+    public void handleBack(ActionEvent event) {
+        changeScene("WaiterMainMenu.fxml", "Панель официанта", 250, 275, event);
 
-    public void handleBack(ActionEvent actionEvent) {
     }
 }

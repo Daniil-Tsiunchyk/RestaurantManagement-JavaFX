@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class KitchenWorkController {
+import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
+
+public class KitchenJobController {
 
 
     @FXML
@@ -33,6 +35,7 @@ public class KitchenWorkController {
 
     @FXML
     void handleLogout(ActionEvent event) {
+        changeScene("Authorisation.fxml", "Авторизация", 250, 275, event);
 
     }
 

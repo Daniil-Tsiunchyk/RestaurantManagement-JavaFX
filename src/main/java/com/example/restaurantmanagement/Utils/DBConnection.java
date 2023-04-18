@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    //подключение к базе данных
     public static Connection getDbConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant_management", "root", "root");
     }

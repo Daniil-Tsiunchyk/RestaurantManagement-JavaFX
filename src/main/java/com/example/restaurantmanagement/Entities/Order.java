@@ -1,32 +1,51 @@
 package com.example.restaurantmanagement.Entities;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Order {
     int id;
     String information;
     Double total_cost;
-    LocalDateTime timestamp;
+    Timestamp start_time;
+    Timestamp end_time;
     int table_id;
+    String status;
     List<OrderedDish> orderedDishes;
 
-    public Order(int id, String information, Double total_cost, LocalDateTime timestamp, int table_id, List<OrderedDish> orderedDishes) {
+    public Order(int id, String information, Double total_cost, int table_id, Timestamp start_time, Timestamp end_time, String status) {
         this.id = id;
         this.information = information;
         this.total_cost = total_cost;
-        this.timestamp = timestamp;
+        this.start_time = start_time;
+        this.end_time = end_time;
         this.table_id = table_id;
-        this.orderedDishes = orderedDishes;
+        this.status = status;
     }
 
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public String getStatus() {
+        return status;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Timestamp getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Timestamp start_time) {
+        this.start_time = start_time;
+    }
+
+    public Timestamp getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(Timestamp end_time) {
+        this.end_time = end_time;
     }
 
     public List<OrderedDish> getOrderedDishes() {

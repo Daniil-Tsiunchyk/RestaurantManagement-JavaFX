@@ -11,9 +11,9 @@
         <TableView fx:id="order_table" layoutX="14.0" layoutY="29.0" prefHeight="317.0" prefWidth="300.0">
             <columns>
                 <TableColumn fx:id="number_column" prefWidth="31.200014114379883" text="№"/>
-                <TableColumn fx:id="name_column" prefWidth="119.1999740600586" text="Заказ"/>
+                <TableColumn fx:id="name_column" prefWidth="119.1999740600586" text="Название"/>
                 <TableColumn fx:id="category_column" prefWidth="75.0" text="Категория"/>
-                <TableColumn fx:id="price_column" prefWidth="72.80001831054688" text="Стоимость"/>
+                <TableColumn fx:id="price_column" prefWidth="72.80001831054688" text="Цена"/>
             </columns>
         </TableView>
         <Label alignment="TOP_CENTER" layoutX="74.0" layoutY="6.0" prefHeight="18.0" prefWidth="202.0"
@@ -43,7 +43,7 @@
         <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
     </GridPane>
     <AnchorPane prefHeight="54.0" prefWidth="602.0" style="-fx-background-color: h;">
-        <Label fx:id="totalCoseLabel" layoutX="98.0" layoutY="16.0" text="Label"/>
+        <Label fx:id="totalCoseLabel" layoutX="99.0" layoutY="19.0" text="Label"/>
         <Button fx:id="NewOrderButton" layoutX="513.0" layoutY="15.0" mnemonicParsing="false" text="Ready"/>
         <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBack"
                 text="Back"/>

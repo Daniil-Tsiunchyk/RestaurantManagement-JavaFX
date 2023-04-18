@@ -27,8 +27,6 @@ public class StaffService {
                 role = Role.valueOf(resSet.getString("role"));
             }
         }
-
-        System.out.println(role);
         return role;
     }
 
