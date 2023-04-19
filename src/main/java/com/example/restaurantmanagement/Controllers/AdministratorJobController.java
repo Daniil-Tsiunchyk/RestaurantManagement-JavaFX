@@ -28,7 +28,6 @@ public class AdministratorJobController extends ManagerJobController {
     @FXML
     void handleBack(ActionEvent event) {
         changeScene("Authorisation.fxml", "Авторизация", 250, 275, event);
-
     }
 
 }
