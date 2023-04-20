@@ -1,7 +1,6 @@
 package com.example.restaurantmanagement.Entities;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Order {
     int id;
@@ -11,7 +10,6 @@ public class Order {
     Timestamp end_time;
     int table_id;
     String status;
-    List<OrderedDish> orderedDishes;
 
     public Order(int id, String information, Double total_cost, int table_id, Timestamp start_time, Timestamp end_time, String status) {
         this.id = id;
@@ -46,14 +44,6 @@ public class Order {
 
     public void setEnd_time(Timestamp end_time) {
         this.end_time = end_time;
-    }
-
-    public List<OrderedDish> getOrderedDishes() {
-        return orderedDishes;
-    }
-
-    public void setOrderedDishes(List<OrderedDish> orderedDishes) {
-        this.orderedDishes = orderedDishes;
     }
 
     public int getId() {
