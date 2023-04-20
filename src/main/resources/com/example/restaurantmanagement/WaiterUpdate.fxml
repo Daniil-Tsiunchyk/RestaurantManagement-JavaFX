@@ -6,8 +6,8 @@
 <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
           prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
           xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.example.restaurantmanagement.Controllers.WaiterCreateOrderController">
-    <AnchorPane prefHeight="336.0" prefWidth="333.0">
+          fx:controller="com.example.restaurantmanagement.Controllers.WaiterUpdateController">
+    <AnchorPane prefHeight="336.0" prefWidth="333.0" stylesheets="@styles.css">
         <TableView fx:id="order_table" layoutX="14.0" layoutY="29.0" prefHeight="317.0" prefWidth="300.0">
             <columns>
                 <TableColumn fx:id="number_column" prefWidth="31.200014114379883" text="№"/>
@@ -18,9 +18,14 @@
         </TableView>
         <Label alignment="TOP_CENTER" layoutX="74.0" layoutY="6.0" prefHeight="18.0" prefWidth="202.0"
                text="Текущий заказ" textAlignment="CENTER"/>
+        <Separator layoutX="319.0" layoutY="29.0" orientation="VERTICAL" prefHeight="300.0"/>
     </AnchorPane>
-    <GridPane alignment="TOP_CENTER" gridLinesVisible="true" prefHeight="336.0" prefWidth="266.0">
+    <GridPane alignment="TOP_CENTER" prefHeight="336.0" prefWidth="266.0">
         <columnConstraints>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
         </columnConstraints>
@@ -33,14 +38,14 @@
         <cursor>
             <Cursor fx:constant="CLOSED_HAND"/>
         </cursor>
-        <Button mnemonicParsing="false" text="Button"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="1"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="2"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="3"/>
-        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="5"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+        <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
     </GridPane>
     <AnchorPane prefHeight="54.0" prefWidth="602.0" style="-fx-background-color: h;">
         <Label fx:id="totalCoseLabel" layoutX="99.0" layoutY="19.0" text="Label"/>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+            prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.restaurantmanagement.Controllers.ManagerOrdersController">
+    <TableView fx:id="order_table" fixedCellSize="0.0" layoutX="30.0" layoutY="65.0" prefHeight="327.0"
+               prefWidth="760.0">
+        <columns>
+            <TableColumn fx:id="number_column" prefWidth="31.200014114379883" text="№"/>
+            <TableColumn fx:id="order_column" prefWidth="161.5999412536621" text="Заказ"/>
+            <TableColumn fx:id="price_column" prefWidth="128.80006408691406" text="Стоимость"/>
+            <TableColumn fx:id="start_time" prefWidth="180.79998779296875" text="Время заказа"/>
+            <TableColumn fx:id="end_time" prefWidth="152.0" text="Время выдачи"/>
+            <TableColumn fx:id="status_column" prefWidth="92.7999267578125" text="Статус"/>
+        </columns>
+    </TableView>
+    <Label layoutX="328.0" layoutY="21.0" text="Список заказов">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Label>
+    <Button layoutX="361.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleBack" text="Назад"/>
+</AnchorPane>

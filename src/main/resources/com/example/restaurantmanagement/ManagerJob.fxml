@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.restaurantmanagement.Controllers.ManagerJobController">
-    <Button layoutX="500.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleLogout" text="Выйти"/>
-</AnchorPane>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="240.0" spacing="20.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantmanagement.Controllers.ManagerJobController">
+    <cursor>
+        <Cursor fx:constant="OPEN_HAND" />
+    </cursor>
+    <Label fx:id="handleHello" text="Здравствуй, {name}!">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Button mnemonicParsing="false" onAction="#handleTableManagement" prefWidth="170.0" text="Работа со столиками">
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+    </Button>
+    <Button mnemonicParsing="false" onAction="#handleWorkManagement" prefWidth="170.0" text="Работа со сменами" />
+    <Button mnemonicParsing="false" onAction="#handleOrdersManagement" prefWidth="170.0" text="Работа с заказами" />
+    <Button mnemonicParsing="false" onAction="#handleLogout" prefWidth="170.0" text="Выйти" />
+</VBox>

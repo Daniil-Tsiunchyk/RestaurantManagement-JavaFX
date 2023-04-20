@@ -9,7 +9,7 @@ import javafx.scene.control.TableView;
 
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class WaiterCreateOrderController {
+public class WaiterCreateController {
 
     @FXML
     private Button NewOrderButton;

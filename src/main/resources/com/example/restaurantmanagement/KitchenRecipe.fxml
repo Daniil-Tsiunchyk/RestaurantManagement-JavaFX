@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: bisque;" stylesheets="@styles.css"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.restaurantmanagement.Controllers.KitchenRecipeInfoController">
+            fx:controller="com.example.restaurantmanagement.Controllers.KitchenRecipeController">
     <Button fx:id="closeButton" layoutX="512.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleClose"
             text="Закрыть">
         <cursor>

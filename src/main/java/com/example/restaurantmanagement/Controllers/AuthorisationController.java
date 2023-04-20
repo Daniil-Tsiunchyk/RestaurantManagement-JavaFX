@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.Controllers;
 
 import com.example.restaurantmanagement.Database.StaffService;
 import com.example.restaurantmanagement.Enums.Role;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -53,8 +54,8 @@ public class AuthorisationController {
             case MANAGER -> {
                 fxmlFile = "ManagerJob.fxml";
                 title = "Панель менеджера";
-                width = 600;
-                height = 400;
+                width = 270;
+                height = 300;
             }
             case KITCHEN -> {
                 fxmlFile = "KitchenJob.fxml";
@@ -63,14 +64,19 @@ public class AuthorisationController {
                 height = 400;
             }
             case ADMINISTRATOR -> {
-                fxmlFile = "AdministratorJob.fxml";
+                fxmlFile = "AdminJob.fxml";
                 title = "Панель администратора";
-                width = 600;
-                height = 400;
+                width = 250;
+                height = 275;
             }
             default -> throw new IllegalArgumentException("Неверная роль: " + role);
         }
 
         changeScene(fxmlFile, title, width, height, event);
+    }
+
+    @FXML
+    void handleExit(ActionEvent event) {
+        Platform.exit();
     }
 }

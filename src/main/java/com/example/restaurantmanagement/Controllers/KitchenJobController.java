@@ -47,7 +47,7 @@ public class KitchenJobController {
     @FXML
     void handeGetInfo(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("KitchenRecipeInfo.fxml"));
+        loader.setLocation(Main.class.getResource("KitchenRecipe.fxml"));
 
         try {
             loader.load();

@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class KitchenRecipeInfoController {
+public class KitchenRecipeController {
 
     @FXML
     private ImageView food_image;

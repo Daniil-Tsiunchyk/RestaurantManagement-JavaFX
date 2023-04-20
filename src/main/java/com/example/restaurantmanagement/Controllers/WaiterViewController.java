@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import static com.example.restaurantmanagement.Database.OrderService.getDataOrders;
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class WaiterViewOrdersController {
+public class WaiterViewController {
 
     @FXML
     private TableColumn<?, ?> end_time;

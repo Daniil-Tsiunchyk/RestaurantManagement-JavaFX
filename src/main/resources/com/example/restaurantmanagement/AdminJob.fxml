@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="275.0" prefWidth="250.0" spacing="20.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.restaurantmanagement.Controllers.AdminJobController">
+    <cursor>
+        <Cursor fx:constant="OPEN_HAND"/>
+    </cursor>
+    <Label fx:id="handleHello" text="Здравствуй, {name}!">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <Button mnemonicParsing="false" onAction="#handleStaffManagement" prefWidth="180.0" text="Работа с сотрудниками">
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+    </Button>
+    <Button mnemonicParsing="false" onAction="#handleOrderManagement" prefWidth="180.0" text="Работа с операциями"/>
+    <Button mnemonicParsing="false" onAction="#handleDishManagement" prefWidth="180.0" text="Работа с меню"/>
+    <Button mnemonicParsing="false" onAction="#handleLogout" prefWidth="180.0" text="Выйти"/>
+</VBox>

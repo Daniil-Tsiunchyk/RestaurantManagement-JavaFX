@@ -2,7 +2,6 @@ package com.example.restaurantmanagement.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -11,7 +10,7 @@ import java.util.ResourceBundle;
 
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class WaiterUpdateOrderController {
+public class AdminOrdersController {
 
     @FXML
     private ResourceBundle resources;
@@ -20,13 +19,13 @@ public class WaiterUpdateOrderController {
     private URL location;
 
     @FXML
-    private TableColumn<?, ?> category_column;
-
-    @FXML
-    private TableColumn<?, ?> name_column;
+    private TableColumn<?, ?> end_time;
 
     @FXML
     private TableColumn<?, ?> number_column;
+
+    @FXML
+    private TableColumn<?, ?> order_column;
 
     @FXML
     private TableView<?> order_table;
@@ -35,24 +34,19 @@ public class WaiterUpdateOrderController {
     private TableColumn<?, ?> price_column;
 
     @FXML
-    private Label totalCoseLabel;
+    private TableColumn<?, ?> start_time;
 
     @FXML
-    void handleNewOrder(ActionEvent event) {
-        //оздание нового заказа(запрос в БД)
-        changeScene("WaiterJob.fxml", "Панель официанта", 250, 275, event);
-
-    }
+    private TableColumn<?, ?> status_column;
 
     @FXML
+    void handleBack(ActionEvent event) {
+        changeScene("AdminJob.fxml", "Панель администратора", 250, 275, event);
 
-    public void handleBack(ActionEvent event) {
-        changeScene("WaiterJob.fxml", "Панель официанта", 250, 275, event);
     }
 
     @FXML
     void initialize() {
-
     }
 
 }

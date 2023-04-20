@@ -12,17 +12,17 @@ public class WaiterJobController {
 
     @FXML
     void handleCreateOrder(ActionEvent event) {
-        changeScene("WaiterCreateOrder.fxml", "Новый заказ", 600, 400, event);
+        changeScene("WaiterCreate.fxml", "Новый заказ", 600, 400, event);
     }
 
     @FXML
     void handleUpdateOrder(ActionEvent event) {
-        changeScene("WaiterUpdateOrder.fxml", "Редактирование заказа", 600, 400, event);
+        changeScene("WaiterUpdate.fxml", "Редактирование заказа", 600, 400, event);
     }
 
     @FXML
     void handleViewOrders(ActionEvent event) {
-        changeScene("WaiterViewOrders.fxml", "Просмотр заказов", 800, 450, event);
+        changeScene("WaiterView.fxml", "Просмотр заказов", 800, 450, event);
     }
 
     @FXML
