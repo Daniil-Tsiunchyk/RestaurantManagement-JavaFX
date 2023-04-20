@@ -12,17 +12,17 @@
     <cursor>
         <Cursor fx:constant="OPEN_HAND"/>
     </cursor>
-    <Label text="Hello, {name}">
+    <Label fx:id="handleHello" text="Здравствуй, {name}!">
         <font>
             <Font size="18.0"/>
         </font>
     </Label>
-    <Button mnemonicParsing="false" onAction="#handleCreateOrder" prefWidth="120.0" text="Create Order">
+    <Button mnemonicParsing="false" onAction="#handleCreateOrder" prefWidth="140.0" text="Новый заказ">
         <VBox.margin>
             <Insets/>
         </VBox.margin>
     </Button>
-    <Button mnemonicParsing="false" onAction="#handleUpdateOrder" prefWidth="120.0" text="Update Order"/>
-    <Button mnemonicParsing="false" onAction="#handleViewOrders" prefWidth="120.0" text="View Orders"/>
-    <Button mnemonicParsing="false" onAction="#handleLogout" prefWidth="120.0" text="Logout"/>
+    <Button mnemonicParsing="false" onAction="#handleUpdateOrder" prefWidth="140.0" text="Обновить заказ"/>
+    <Button mnemonicParsing="false" onAction="#handleViewOrders" prefWidth="140.0" text="Информация"/>
+    <Button mnemonicParsing="false" onAction="#handleLogout" prefWidth="140.0" text="Выйти"/>
 </VBox>

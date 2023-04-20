@@ -12,8 +12,8 @@ import java.io.IOException;
 public class FxUtils {
 
     public static void changeScene(String name, String title, int width, int height, ActionEvent event) {
-        Stage stage = getStageFromEvent(event);
-        FXMLLoader fxmlLoader = getFXMLLoader(name);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(name));
 
         try {
             Scene scene = new Scene(fxmlLoader.load(), width, height);
@@ -27,13 +27,6 @@ public class FxUtils {
         }
     }
 
-    private static Stage getStageFromEvent(ActionEvent event) {
-        return (Stage) ((Node) event.getSource()).getScene().getWindow();
-    }
-
-    private static FXMLLoader getFXMLLoader(String name) {
-        return new FXMLLoader(Main.class.getResource(name));
-    }
 
     private static void setStageProperties(Stage stage, String title, Scene scene) {
         stage.setResizable(false);
