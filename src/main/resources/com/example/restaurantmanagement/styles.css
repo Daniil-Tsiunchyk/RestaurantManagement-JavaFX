@@ -124,3 +124,39 @@
     -fx-background-color: #81c483;
     -fx-background-radius: 15px;
 }
+
+.choice-box {
+    -fx-padding: 8px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+}
+
+.choice-box .label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 6, 0, 1, 4);
+}
+
+.choice-box .menu-item {
+    -fx-padding: 8px 16px;
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.choice-box .menu-item:selected {
+    -fx-background-color: #d0d0d0;
+}

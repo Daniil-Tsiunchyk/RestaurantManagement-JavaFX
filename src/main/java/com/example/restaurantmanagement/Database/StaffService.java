@@ -3,18 +3,18 @@ package com.example.restaurantmanagement.Database;
 import com.example.restaurantmanagement.Entities.Staff;
 import com.example.restaurantmanagement.Enums.Role;
 import com.example.restaurantmanagement.Utils.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.*;
+
+import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
 
 public class StaffService {
     public static Role requestRoleFromDataBase(String username, String password) throws SQLException {
         Role role = null;
 
-        String select = "SELECT role FROM staff WHERE login=? AND password=?";
+        String select = "SELECT role FROM staff WHERE login=? AND password=? AND dismissal_from_work IS NULL";
 
         try (Connection connection = DBConnection.getDbConnection();
              PreparedStatement prSt = connection.prepareStatement(select)) {
@@ -30,26 +30,84 @@ public class StaffService {
         return role;
     }
 
-    void createUser(Staff user) {
+    public static ObservableList<Staff> getDataStaff() throws SQLException {
+        ObservableList<Staff> list = FXCollections.observableArrayList();
+        String select = "SELECT * FROM staff";
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(select);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                list.add(mapResultSetToStaff(rs));
+            }
+        }
+        return list;
     }
 
-    void updateUser(Staff user) {
+    private static Staff mapResultSetToStaff(ResultSet rs) throws SQLException {
+        return new Staff(
+                rs.getInt("idstaff"),
+                rs.getString("name"),
+                rs.getString("login"),
+                rs.getString("password"),
+                Role.valueOf(rs.getString("role")),
+                rs.getDate("apparatus_employed"),
+                rs.getDate("dismissal_from_work")
+        );
     }
 
-    void deleteUser(int userId) {
+    public static void createUser(String name, String login, String password, Role role) {
+        String insertQuery = "INSERT INTO staff (name, login, password, role, apparatus_employed) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(insertQuery)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, login);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, role.name());
+            preparedStatement.setDate(5, new Date(System.currentTimeMillis()));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    Staff getUserById(int userId) {
-        return null;
+    public static void updateUser(int id, Role role) {
+        String updateQuery = "UPDATE staff SET role = ? WHERE idstaff = ?";
+
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
+            preparedStatement.setString(1, role.name());
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    Staff getUserByEmail(String email) {
-        return null;
+    public static void deleteUser(int id) {
+        String deleteQuery = "DELETE FROM staff WHERE idstaff = ?";
+
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(deleteQuery)) {
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    List<Staff> getUsersByRole(Role role) {
-        return null;
-    }
+    public static void dismissStaff(int id) {
+        String updateQuery = "UPDATE staff SET dismissal_from_work = ? WHERE idstaff = ?";
 
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
+            preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

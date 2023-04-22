@@ -1,30 +1,42 @@
 package com.example.restaurantmanagement.Entities;
 
+import com.example.restaurantmanagement.Enums.Role;
+
 import java.sql.Date;
 
 public class Staff {
-    int id;
+    int idstaff;
+    String name;
     String login;
     String password;
-    String name;
-    java.sql.Date apparatus_employed;
-    java.sql.Date dismissal_from_work;
+    Role role;
+    Date apparatus_employed;
+    Date dismissal_from_work;
 
-    public Staff(int id, String login, String password, String name, Date apparatus_employed, Date dismissal_from_work) {
-        this.id = id;
+    public Staff(int idstaff, String name, String login, String password, Role role, Date apparatus_employed, Date dismissal_from_work) {
+        this.idstaff = idstaff;
+        this.name = name;
         this.login = login;
         this.password = password;
-        this.name = name;
+        this.role = role;
         this.apparatus_employed = apparatus_employed;
         this.dismissal_from_work = dismissal_from_work;
     }
 
-    public int getId() {
-        return id;
+    public int getIdstaff() {
+        return idstaff;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdstaff(int idstaff) {
+        this.idstaff = idstaff;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLogin() {
@@ -43,12 +55,12 @@ public class Staff {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public Role getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Date getApparatus_employed() {

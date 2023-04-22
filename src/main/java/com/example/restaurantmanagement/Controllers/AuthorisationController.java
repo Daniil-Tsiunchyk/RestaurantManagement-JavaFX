@@ -9,8 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
+import static com.example.restaurantmanagement.Database.StaffService.requestRoleFromDataBase;
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
 public class AuthorisationController {
@@ -31,7 +33,7 @@ public class AuthorisationController {
             return;
         }
 
-        Role role = StaffService.requestRoleFromDataBase(username, password);
+        Role role = requestRoleFromDataBase(username, password);
         if (role == null) {
             statusLabel.setText("Неверный логин или пароль.");
         } else {

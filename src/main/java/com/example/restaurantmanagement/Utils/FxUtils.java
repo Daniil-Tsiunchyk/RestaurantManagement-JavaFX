@@ -32,5 +32,6 @@ public class FxUtils {
         stage.setResizable(false);
         stage.setTitle(title);
         stage.setScene(scene);
+        stage.centerOnScreen();
     }
 }

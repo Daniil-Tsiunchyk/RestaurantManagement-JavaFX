@@ -32,7 +32,7 @@ public class AdminJobController {
 
     @FXML
     void handleStaffManagement(ActionEvent event) {
-        changeScene("AdminStaff.fxml", "Работа с сотрудниками", 800, 450, event);
+        changeScene("AdminStaff.fxml", "Работа с сотрудниками", 1100, 600, event);
 
     }
 }
