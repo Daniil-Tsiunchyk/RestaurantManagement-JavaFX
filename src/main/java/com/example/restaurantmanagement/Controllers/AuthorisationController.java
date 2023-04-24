@@ -50,8 +50,8 @@ public class AuthorisationController {
             case WAITER -> {
                 fxmlFile = "WaiterJob.fxml";
                 title = "Панель официанта";
-                width = 250;
-                height = 300;
+                width = 240;
+                height = 275;
             }
             case MANAGER -> {
                 fxmlFile = "ManagerJob.fxml";

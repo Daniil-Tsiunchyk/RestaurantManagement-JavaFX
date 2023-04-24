@@ -37,7 +37,7 @@ public class WaiterViewController {
 
     @FXML
     void handleBack(ActionEvent event) {
-        changeScene("WaiterJob.fxml", "Панель официанта", 250, 275, event);
+        changeScene("WaiterJob.fxml", "Панель официанта", 240, 275, event);
     }
 
     @FXML

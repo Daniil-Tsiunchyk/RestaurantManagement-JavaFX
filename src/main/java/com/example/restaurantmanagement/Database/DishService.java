@@ -2,7 +2,6 @@ package com.example.restaurantmanagement.Database;
 
 import com.example.restaurantmanagement.Entities.Dish;
 import com.example.restaurantmanagement.Entities.OrderedDish;
-import com.example.restaurantmanagement.Enums.DishCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
 
@@ -45,21 +43,53 @@ public class DishService {
         );
     }
 
+    public static ObservableList<Dish> getDataDish() throws SQLException {
+        ObservableList<Dish> list = FXCollections.observableArrayList();
+        String select = """
+                SELECT d.iddish, d.name, d.cost, dt.name as type_name
+                FROM dishes d
+                LEFT JOIN dish_types dt ON d.type_id = dt.iddish_type;
+                             
+                """;
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(select);
+             ResultSet rs = ps.executeQuery()) {
 
-    void createDish(Dish dish) {
+            while (rs.next()) {
+                list.add(mapResultSetToDish(rs));
+            }
+
+        }
+        return list;
     }
 
-    void updateDish(Dish dish) {
+    public static ObservableList<Dish> getDataDishWithType(int type_id) throws SQLException {
+        ObservableList<Dish> list = FXCollections.observableArrayList();
+        String select = """
+                SELECT d.iddish, d.recipe_id, d.name, d.cost, dt.name as type_name
+                FROM dishes d
+                LEFT JOIN dish_types dt ON d.type_id = dt.iddish_type
+                WHERE d.type_id =
+                """ + type_id + ';';
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(select);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                list.add(mapResultSetToDish(rs));
+            }
+
+        }
+        return list;
     }
 
-    void deleteDish(int dishId) {
+    private static Dish mapResultSetToDish(ResultSet rs) throws SQLException {
+        return new Dish(
+                rs.getInt("iddish"),
+                rs.getString("name"),
+                rs.getDouble("cost"),
+                rs.getString("type_name")
+        );
     }
 
-    Dish getDishById(int dishId) {
-        return null;
-    }
-
-    List<Dish> getDishesByCategory(DishCategory category) {
-        return null;
-    }
 }

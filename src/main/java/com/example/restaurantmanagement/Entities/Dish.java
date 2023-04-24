@@ -1,15 +1,22 @@
 package com.example.restaurantmanagement.Entities;
 
 public class Dish {
-    int id;
+    int iddish;
     int recipe_id;
     String name;
     Double cost;
     String type;
 
-    public Dish(int id, int recipe_id, String name, Double cost, String type) {
-        this.id = id;
+    public Dish(int iddish, int recipe_id, String name, Double cost, String type) {
+        this.iddish = iddish;
         this.recipe_id = recipe_id;
+        this.name = name;
+        this.cost = cost;
+        this.type = type;
+    }
+
+    public Dish(int iddish, String name, Double cost, String type) {
+        this.iddish = iddish;
         this.name = name;
         this.cost = cost;
         this.type = type;
@@ -24,12 +31,12 @@ public class Dish {
     }
 
 
-    public int getId() {
-        return id;
+    public int getIddish() {
+        return iddish;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIddish(int iddish) {
+        this.iddish = iddish;
     }
 
     public int getRecipe_id() {
