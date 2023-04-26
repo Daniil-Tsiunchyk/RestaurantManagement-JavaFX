@@ -18,9 +18,7 @@
     </Button>
     <ImageView fx:id="food_image" fitHeight="271.0" fitWidth="167.0" layoutX="37.0" layoutY="64.0" pickOnBounds="true"
                preserveRatio="true">
-        <image>
-            <Image url="@Images/yVuG9wy6JJ4.jpg"/>
-        </image>
+        <Image url="@Images/yVuG9wy6JJ4.jpg"/>
     </ImageView>
     <Label fx:id="title_label" layoutX="87.0" layoutY="23.0"
            text="Лимонный тарт: нежный десерт с ярким ароматом цитрусов"/>

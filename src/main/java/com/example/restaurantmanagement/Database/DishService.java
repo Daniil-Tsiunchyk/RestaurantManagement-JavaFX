@@ -5,10 +5,9 @@ import com.example.restaurantmanagement.Entities.OrderedDish;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.sql.*;
+import java.time.LocalDateTime;
 
 import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
 
@@ -87,9 +86,44 @@ public class DishService {
         return new Dish(
                 rs.getInt("iddish"),
                 rs.getString("name"),
-                rs.getDouble("cost"),
+                rs.getBigDecimal("cost"),
                 rs.getString("type_name")
         );
     }
 
+    public static void addOrderAndOrderedDishes(ObservableList<Dish> list, String names, BigDecimal totalCost, int table_id) throws SQLException {
+        String insert = "INSERT INTO `orders` (information, total_cost, table_id, start_time, end_time, status) VALUES (?, ?, ?, ?, ?, ?)";
+        LocalDateTime startTime = LocalDateTime.now();
+        String status = "OPEN";
+
+        int orderId;
+
+        try (PreparedStatement insertOrderStatement = getDbConnection().prepareStatement(insert, Statement.RETURN_GENERATED_KEYS)) {
+            insertOrderStatement.setString(1, names);
+            insertOrderStatement.setDouble(2, Double.parseDouble(String.valueOf(totalCost)));
+            insertOrderStatement.setInt(3, table_id);
+            insertOrderStatement.setTimestamp(4, Timestamp.valueOf(startTime));
+            insertOrderStatement.setTimestamp(5, null);
+            insertOrderStatement.setString(6, status);
+            insertOrderStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = insertOrderStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    orderId = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Ошибка создания заказа");
+                }
+            }
+        }
+
+        for (Dish dish : list) {
+            insert = "INSERT INTO `ordered_dish` (dish_id, order_id, status) VALUES (?, ?, ?)";
+            try (PreparedStatement insertOrderedDishStatement = getDbConnection().prepareStatement(insert)) {
+                insertOrderedDishStatement.setInt(1, dish.getIddish());
+                insertOrderedDishStatement.setInt(2, orderId);
+                insertOrderedDishStatement.setString(3, status);
+                insertOrderedDishStatement.executeUpdate();
+            }
+        }
+    }
 }

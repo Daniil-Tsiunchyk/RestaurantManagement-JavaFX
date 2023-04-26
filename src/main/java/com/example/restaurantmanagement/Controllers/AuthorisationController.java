@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.Controllers;
 
-import com.example.restaurantmanagement.Database.StaffService;
 import com.example.restaurantmanagement.Enums.Role;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 import static com.example.restaurantmanagement.Database.StaffService.requestRoleFromDataBase;
