@@ -11,7 +11,7 @@
     <cursor>
         <Cursor fx:constant="OPEN_HAND" />
     </cursor>
-    <Label fx:id="handleHello" text="Здравствуй, {name}!">
+    <Label fx:id="handleHello" text="Меню менеджера">
         <font>
             <Font size="18.0" />
         </font>

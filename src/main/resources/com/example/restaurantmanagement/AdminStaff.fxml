@@ -43,5 +43,5 @@
    <Button layoutX="944.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleAddAccount" text="Добавить" />
    <Label layoutX="208.0" layoutY="511.0" text="Нажмите на интересующего вас сотрудника" />
    <Separator layoutX="123.0" layoutY="503.0" orientation="VERTICAL" prefHeight="75.0" />
-   <Label fx:id="error_message" layoutX="745.0" layoutY="511.0" text="Label" />
+   <Label fx:id="error_message" layoutX="745.0" layoutY="511.0" />
 </AnchorPane>

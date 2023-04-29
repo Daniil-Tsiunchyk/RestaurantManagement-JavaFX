@@ -4,18 +4,15 @@ public class OrderedDish {
     int idordered_dish;
     int orderId;
     int dishId;
-    int quantity;
     String dish_name;
     String dish_type;
     String status;
 
-    public OrderedDish(int idordered_dish, String dish_name, String dish_type, String status, int quantity) {
+    public OrderedDish(int idordered_dish, String dish_name, String dish_type, String status) {
         this.idordered_dish = idordered_dish;
         this.dish_name = dish_name;
         this.dish_type = dish_type;
         this.status = status;
-        this.quantity = quantity;
-
     }
 
 
@@ -65,13 +62,5 @@ public class OrderedDish {
 
     public void setDishId(int dishId) {
         this.dishId = dishId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }

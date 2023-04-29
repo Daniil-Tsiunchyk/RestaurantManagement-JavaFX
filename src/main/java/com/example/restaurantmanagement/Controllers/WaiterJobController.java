@@ -7,14 +7,17 @@ import javafx.scene.control.Label;
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
 public class WaiterJobController {
-    @FXML
-    private Label handleHello;
 
     @FXML
     void handleCreateOrder(ActionEvent event) {
         changeScene("WaiterCreate.fxml", "Новый заказ", 700, 500, event);
     }
 
+    @FXML
+    void handleServeDish(ActionEvent event) {
+        changeScene("WaiterServe.fxml", "Подача блюд", 600, 400, event);
+
+    }
     @FXML
     void handleViewOrders(ActionEvent event) {
         changeScene("WaiterView.fxml", "Просмотр заказов", 800, 450, event);
@@ -25,8 +28,4 @@ public class WaiterJobController {
         changeScene("Authorisation.fxml", "Авторизация", 250, 275, event);
     }
 
-    @FXML
-    void initialize() {
-        handleHello.setText("Здравствуй, {name}!");
-    }
 }

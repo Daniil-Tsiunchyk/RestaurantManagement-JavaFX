@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantmanagement.Controllers.WaiterServeController">
+    <Label layoutX="222.0" layoutY="14.0" text="Приготовленные блюда" />
+    <TableView fx:id="cooking_table" layoutX="29.0" layoutY="48.0" prefHeight="274.0" prefWidth="541.0">
+        <columns>
+            <TableColumn fx:id="cooking_number_column" prefWidth="34.40002250671387" text="№" />
+            <TableColumn fx:id="name_column" prefWidth="163.20001220703125" text="Название" />
+            <TableColumn fx:id="type_column" prefWidth="132.79998779296875" text="Категория" />
+            <TableColumn fx:id="status_column" minWidth="0.0" prefWidth="100.79998779296875" text="Статус" />
+         <TableColumn fx:id="table_column" minWidth="0.0" prefWidth="100.79998779296875" text="Столик" />
+        </columns>
+    </TableView>
+    <Button layoutX="306.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" text="Блюдо подано">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+        </cursor>
+    </Button>
+    <Button layoutX="507.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleBack" text="Назад">
+        <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+        </cursor>
+    </Button>
+   <Button layoutX="84.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" text="Вернуть на кухню">
+      <cursor>
+         <Cursor fx:constant="OPEN_HAND" />
+      </cursor>
+   </Button>
+</AnchorPane>

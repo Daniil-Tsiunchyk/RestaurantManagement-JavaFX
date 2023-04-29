@@ -15,7 +15,7 @@ public class DishService {
     public static ObservableList<OrderedDish> getDataDishForKitchen() throws SQLException {
         ObservableList<OrderedDish> list = FXCollections.observableArrayList();
         String select = """
-                SELECT ordered_dish.idordered_dish, dishes.name AS dish_name, dish_types.name AS dish_type, ordered_dish.status, ordered_dish.quantity
+                SELECT ordered_dish.idordered_dish, dishes.name AS dish_name, dish_types.name AS dish_type, ordered_dish.status
                 FROM ordered_dish
                 JOIN dishes ON ordered_dish.dish_id = dishes.iddish
                 JOIN dish_types ON dishes.type_id = dish_types.iddish_type
@@ -37,8 +37,7 @@ public class DishService {
                 rs.getInt("idordered_dish"),
                 rs.getString("dish_name"),
                 rs.getString("dish_type"),
-                rs.getString("status"),
-                rs.getInt("quantity")
+                rs.getString("status")
         );
     }
 

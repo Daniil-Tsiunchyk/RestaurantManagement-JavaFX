@@ -20,10 +20,6 @@ import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
 public class KitchenJobController {
 
-
-    @FXML
-    private TableColumn<?, ?> type_column;
-
     @FXML
     private TableColumn<?, ?> cooking_number_column;
 
@@ -34,15 +30,10 @@ public class KitchenJobController {
     private TableColumn<?, ?> name_column;
 
     @FXML
-    private TableColumn<?, ?> ready_number_column;
-
-    @FXML
-    private TableView<OrderedDish> ready_table;
-
-    @FXML
-    private TableColumn<?, ?> kol_column;
-    @FXML
     private TableColumn<?, ?> status_column;
+
+    @FXML
+    private TableColumn<?, ?> type_column;
 
     @FXML
     void handeGetInfo(ActionEvent event) {
@@ -78,10 +69,8 @@ public class KitchenJobController {
         name_column.setCellValueFactory(new PropertyValueFactory<>("dish_name"));
         type_column.setCellValueFactory(new PropertyValueFactory<>("dish_type"));
         status_column.setCellValueFactory(new PropertyValueFactory<>("status"));
-        kol_column.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         cooking_table.setItems(getDataDishForKitchen());
-        ready_number_column.setCellValueFactory(new PropertyValueFactory<>("idordered_dish"));
-        ready_table.setItems(getDataDishForKitchen());
+
     }
 }

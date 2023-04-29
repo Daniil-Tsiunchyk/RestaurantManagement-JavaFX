@@ -14,7 +14,7 @@ public class AdminJobController {
 
     @FXML
     void handleDishManagement(ActionEvent event) {
-        changeScene("AdminDishes.fxml", "Работа с меню", 800, 450, event);
+        changeScene("AdminDishes.fxml", "Работа с меню", 950, 600, event);
 
     }
 
