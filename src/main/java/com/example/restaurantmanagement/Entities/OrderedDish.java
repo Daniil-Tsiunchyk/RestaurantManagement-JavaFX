@@ -1,35 +1,43 @@
 package com.example.restaurantmanagement.Entities;
 
-public class OrderedDish {
-    int idordered_dish;
+public class OrderedDish extends Dish {
+
+    int idOrderedDish;
+
     int orderId;
     int dishId;
-    String dish_name;
-    String dish_type;
+    int tableId;
     String status;
 
-    public OrderedDish(int idordered_dish, String dish_name, String dish_type, String status) {
-        this.idordered_dish = idordered_dish;
-        this.dish_name = dish_name;
-        this.dish_type = dish_type;
+
+    public OrderedDish(int idOrderedDish, String name, String type, String status) {
+        super(name, type);
+        this.idOrderedDish = idOrderedDish;
         this.status = status;
     }
 
+    public OrderedDish(int idOrderedDish, String name, String type, String status, int tableId) {
+        super(name, type);
+        this.idOrderedDish = idOrderedDish;
+        this.status = status;
+        this.tableId = tableId;
 
-    public String getDish_name() {
-        return dish_name;
     }
 
-    public void setDish_name(String dish_name) {
-        this.dish_name = dish_name;
+    public int getIdOrderedDish() {
+        return idOrderedDish;
     }
 
-    public String getDish_type() {
-        return dish_type;
+    public void setIdOrderedDish(int idOrderedDish) {
+        this.idOrderedDish = idOrderedDish;
     }
 
-    public void setDish_type(String dish_type) {
-        this.dish_type = dish_type;
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
     }
 
     public String getStatus() {
@@ -38,14 +46,6 @@ public class OrderedDish {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getIdordered_dish() {
-        return idordered_dish;
-    }
-
-    public void setIdordered_dish(int idordered_dish) {
-        this.idordered_dish = idordered_dish;
     }
 
     public int getOrderId() {

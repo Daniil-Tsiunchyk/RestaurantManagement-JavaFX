@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class AdminJobController extends BaseController {
+public class AdminJob extends BaseRoleController{
 
     @FXML
     void handleDishManagement(ActionEvent event) {

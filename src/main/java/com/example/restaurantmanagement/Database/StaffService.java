@@ -7,9 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
-
-public class StaffService {
+public class StaffService extends DBConnection {
     public static String requestRoleFromDataBase(String username, String password) throws SQLException {
         String role = null;
 

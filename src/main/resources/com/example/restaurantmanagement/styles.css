@@ -97,6 +97,7 @@
     -fx-padding: 0.0em;
 }
 
+
 .table-view .virtual-flow .scroll-bar:vertical,
 .table-view .virtual-flow .scroll-bar:vertical .track,
 .table-view .virtual-flow .scroll-bar:vertical .track-background,
@@ -123,6 +124,10 @@
 .table-row-cell:highlighted {
     -fx-background-color: #81c483;
     -fx-background-radius: 15px;
+}
+
+.table-cell {
+    -fx-alignment: CENTER;
 }
 
 .choice-box {
@@ -160,6 +165,7 @@
 .choice-box .menu-item:selected {
     -fx-background-color: #d0d0d0;
 }
+
 .button-image-1 {
     -fx-background-color: transparent;
     -fx-background-size: cover;

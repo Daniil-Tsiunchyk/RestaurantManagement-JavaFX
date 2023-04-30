@@ -3,6 +3,7 @@ package com.example.restaurantmanagement.Controllers;
 import com.example.restaurantmanagement.Entities.OrderedDish;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,21 +42,27 @@ public class WaiterServeController {
 
     @FXML
     void handleUpdateOrderStatus(ActionEvent event) throws SQLException {
+        Button button = (Button) event.getSource();
+        int status = Integer.parseInt(button.getUserData().toString());
         OrderedDish selectedOrderedDish = cooking_table.getSelectionModel().getSelectedItem();
         if (selectedOrderedDish == null) {
             //error_message.setText("Пожалуйста, выберите блюдо");
             return;
         }
-        updateOrderedDishStatus(selectedOrderedDish.getDishId(), "CLOSED");
+        if (status == 1) {
+            updateOrderedDishStatus(selectedOrderedDish.getIdOrderedDish(), "CLOSED");
+        } else if (status == 2) {
+            updateOrderedDishStatus(selectedOrderedDish.getIdOrderedDish(), "RETURNED");
+        }
         updateTable();
     }
 
     void updateTable() throws SQLException {
-        cooking_number_column.setCellValueFactory(new PropertyValueFactory<>("idordered_dish"));
+        cooking_number_column.setCellValueFactory(new PropertyValueFactory<>("idOrderedDish"));
         name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
         status_column.setCellValueFactory(new PropertyValueFactory<>("status"));
-        table_column.setCellValueFactory(new PropertyValueFactory<>("status"));
-        type_column.setCellValueFactory(new PropertyValueFactory<>("type_name"));
+        table_column.setCellValueFactory(new PropertyValueFactory<>("tableId"));
+        type_column.setCellValueFactory(new PropertyValueFactory<>("type"));
 
         cooking_table.setItems(getDataServedDishes());
     }

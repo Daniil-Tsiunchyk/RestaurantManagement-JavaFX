@@ -3,25 +3,34 @@ package com.example.restaurantmanagement.Entities;
 import java.math.BigDecimal;
 
 public class Dish {
-    int iddish;
+    int id;
     int recipe_id;
     String name;
     BigDecimal cost;
     String type;
 
-    public Dish(int iddish, int recipe_id, String name, BigDecimal cost, String type) {
-        this.iddish = iddish;
+    public Dish(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public Dish(int id, int recipe_id, String name, BigDecimal cost, String type) {
+        this.id = id;
         this.recipe_id = recipe_id;
         this.name = name;
         this.cost = cost;
         this.type = type;
     }
 
-    public Dish(int iddish, String name, BigDecimal cost, String type) {
-        this.iddish = iddish;
+    public Dish(int id, String name, BigDecimal cost, String type) {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.type = type;
+    }
+
+    public Dish() {
+
     }
 
     public String getType() {
@@ -33,12 +42,12 @@ public class Dish {
     }
 
 
-    public int getIddish() {
-        return iddish;
+    public int getId() {
+        return id;
     }
 
-    public void setIddish(int iddish) {
-        this.iddish = iddish;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getRecipe_id() {
@@ -68,7 +77,7 @@ public class Dish {
     @Override
     public String toString() {
         return "Dish{" +
-                "iddish=" + iddish +
+                "iddish=" + id +
                 ", recipe_id=" + recipe_id +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +

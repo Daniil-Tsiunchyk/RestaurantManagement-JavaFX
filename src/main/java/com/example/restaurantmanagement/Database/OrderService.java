@@ -1,6 +1,7 @@
 package com.example.restaurantmanagement.Database;
 
 import com.example.restaurantmanagement.Entities.Order;
+import com.example.restaurantmanagement.Utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
-
-public class OrderService {
+public class OrderService extends DBConnection {
 
     public static ObservableList<Order> getDataOrders() throws SQLException {
         ObservableList<Order> list = FXCollections.observableArrayList();
@@ -29,7 +28,7 @@ public class OrderService {
 
     private static Order mapResultSetToOrder(ResultSet rs) throws SQLException {
         return new Order(
-                rs.getInt("id_order"),
+                rs.getInt("id"),
                 rs.getString("information"),
                 rs.getDouble("total_cost"),
                 rs.getInt("table_id"),

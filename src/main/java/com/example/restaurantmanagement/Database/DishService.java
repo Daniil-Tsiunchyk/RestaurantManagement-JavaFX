@@ -2,6 +2,7 @@ package com.example.restaurantmanagement.Database;
 
 import com.example.restaurantmanagement.Entities.Dish;
 import com.example.restaurantmanagement.Entities.OrderedDish;
+import com.example.restaurantmanagement.Utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -9,16 +10,14 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDateTime;
 
-import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
-
-public class DishService {
+public class DishService extends DBConnection {
     public static ObservableList<OrderedDish> getDataDishForKitchen() throws SQLException {
         ObservableList<OrderedDish> list = FXCollections.observableArrayList();
         String select = """
-                SELECT ordered_dish.idordered_dish, dishes.name AS dish_name, dish_types.name AS dish_type, ordered_dish.status
+                SELECT ordered_dish.id AS idordered_dish, dishes.name AS dish_name, dish_types.name AS dish_type, ordered_dish.status
                 FROM ordered_dish
-                JOIN dishes ON ordered_dish.dish_id = dishes.iddish
-                JOIN dish_types ON dishes.type_id = dish_types.iddish_type
+                JOIN dishes ON ordered_dish.dish_id = dishes.id
+                JOIN dish_types ON dishes.type_id = dish_types.id;
                 """;
         try (Connection connection = getDbConnection();
              PreparedStatement ps = connection.prepareStatement(select);
@@ -34,9 +33,9 @@ public class DishService {
 
     private static OrderedDish mapResultSetToDishForKitchen(ResultSet rs) throws SQLException {
         return new OrderedDish(
-                rs.getInt("idordered_dish"),
-                rs.getString("dish_name"),
-                rs.getString("dish_type"),
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("type"),
                 rs.getString("status")
         );
     }
@@ -44,10 +43,9 @@ public class DishService {
     public static ObservableList<Dish> getDataDish() throws SQLException {
         ObservableList<Dish> list = FXCollections.observableArrayList();
         String select = """
-                SELECT d.iddish, d.name, d.cost, dt.name as type_name
+                SELECT d.id, d.name, d.cost, dt.name as type
                 FROM dishes d
-                LEFT JOIN dish_types dt ON d.type_id = dt.iddish_type;
-                             
+                LEFT JOIN dish_types dt ON d.type_id = dt.id;
                 """;
         try (Connection connection = getDbConnection();
              PreparedStatement ps = connection.prepareStatement(select);
@@ -64,9 +62,9 @@ public class DishService {
     public static ObservableList<Dish> getDataDishWithType(int type_id) throws SQLException {
         ObservableList<Dish> list = FXCollections.observableArrayList();
         String select = """
-                SELECT d.iddish, d.recipe_id, d.name, d.cost, dt.name as type_name
+                SELECT d.id, d.recipe_id, d.name, d.cost, dt.name as type
                 FROM dishes d
-                LEFT JOIN dish_types dt ON d.type_id = dt.iddish_type
+                LEFT JOIN dish_types dt ON d.type_id = dt.id
                 WHERE d.type_id =
                 """ + type_id + ';';
         try (Connection connection = getDbConnection();
@@ -83,10 +81,10 @@ public class DishService {
 
     private static Dish mapResultSetToDish(ResultSet rs) throws SQLException {
         return new Dish(
-                rs.getInt("iddish"),
+                rs.getInt("id"),
                 rs.getString("name"),
                 rs.getBigDecimal("cost"),
-                rs.getString("type_name")
+                rs.getString("type")
         );
     }
 
@@ -118,7 +116,7 @@ public class DishService {
         for (Dish dish : list) {
             insert = "INSERT INTO `ordered_dish` (dish_id, order_id, status) VALUES (?, ?, ?)";
             try (PreparedStatement insertOrderedDishStatement = getDbConnection().prepareStatement(insert)) {
-                insertOrderedDishStatement.setInt(1, dish.getIddish());
+                insertOrderedDishStatement.setInt(1, dish.getId());
                 insertOrderedDishStatement.setInt(2, orderId);
                 insertOrderedDishStatement.setString(3, status);
                 insertOrderedDishStatement.executeUpdate();
@@ -128,31 +126,38 @@ public class DishService {
 
     public static ObservableList<OrderedDish> getDataServedDishes() throws SQLException {
         ObservableList<OrderedDish> list = FXCollections.observableArrayList();
-        String select = "";
+        String select = """
+                SELECT ordered_dish.id AS id, dishes.name AS name, dish_types.name AS type, ordered_dish.status, orders.table_id
+                FROM ordered_dish
+                JOIN dishes ON ordered_dish.dish_id = dishes.id
+                JOIN dish_types ON dishes.type_id = dish_types.id
+                JOIN orders ON ordered_dish.order_id = orders.id
+                WHERE ordered_dish.status = 'SERVED';
+                 """;
         try (Connection connection = getDbConnection();
              PreparedStatement ps = connection.prepareStatement(select);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                list.add(mapResultSetToOrderdDish(rs));
+                list.add(mapResultSetToOrderedDish(rs));
             }
 
         }
         return list;
     }
 
-    private static OrderedDish mapResultSetToOrderdDish(ResultSet rs) throws SQLException {
+    private static OrderedDish mapResultSetToOrderedDish(ResultSet rs) throws SQLException {
         return new OrderedDish(
-                rs.getInt("idordered_dish"),
-                rs.getString("dish_name"),
-                rs.getString("dish_type"),
-                rs.getString("status")
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("type"),
+                rs.getString("status"),
+                rs.getInt("table_id")
         );
     }
 
-    public static void updateOrderedDishStatus(int id, String status) {
-
-        String updateQuery = "UPDATE ordered_dish SET status = ? WHERE idordered_dish = ?";
+    public static void updateOrderedDishStatus(int id, String status) throws SQLException {
+        String updateQuery = "UPDATE ordered_dish SET status = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
             preparedStatement.setString(1, status);
@@ -162,5 +167,70 @@ public class DishService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        updateOrderStatusByOrderedDishId(id);
     }
+
+    public static void updateOrderStatus(int orderId) throws SQLException {
+        String updateOrderStatusQuery = """
+                    UPDATE orders
+                    SET status = CASE
+                        WHEN (
+                            SELECT COUNT(*)
+                            FROM ordered_dish
+                            WHERE order_id = orders.id AND status <> 'CLOSED'
+                        ) = 0 THEN 'CLOSED'
+                        WHEN (
+                            SELECT COUNT(*)
+                            FROM ordered_dish
+                            WHERE order_id = orders.id AND status <> 'SERVED'
+                        ) = 0 THEN 'SERVED'
+                        WHEN (
+                            SELECT COUNT(*)
+                            FROM ordered_dish
+                            WHERE order_id = orders.id AND status = 'OPEN'
+                        ) > 0 THEN 'OPEN'
+                        WHEN (
+                            SELECT COUNT(*)
+                            FROM ordered_dish
+                            WHERE order_id = orders.id AND status = 'OPEN'
+                        ) > 0 THEN 'PREPARED'
+                        ELSE orders.status
+                    END,
+                                end_time = IF((
+                            SELECT COUNT(*)
+                            FROM ordered_dish
+                            WHERE order_id = orders.id AND status <> 'CLOSED'
+                        ) = 0             , CURRENT_TIMESTAMP, end_time)
+                                WHERE id = ?;
+                """;
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(updateOrderStatusQuery)) {
+            ps.setInt(1, orderId);
+            ps.executeUpdate();
+//            int rowsAffected = ps.executeUpdate();
+//            System.out.println("Изменилось строк: " + rowsAffected);
+        }
+    }
+
+
+    public static void updateOrderStatusByOrderedDishId(int orderedDishId) throws SQLException {
+
+        String select = "SELECT order_id FROM ordered_dish WHERE id = ?";
+        int orderId = 0;
+
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(select)) {
+            ps.setInt(1, orderedDishId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    orderId = rs.getInt("order_id");
+                }
+            }
+        }
+
+        if (orderId != 0) {
+            updateOrderStatus(orderId);
+        }
+    }
+
 }

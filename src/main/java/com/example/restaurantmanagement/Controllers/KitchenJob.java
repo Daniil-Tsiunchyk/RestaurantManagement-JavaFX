@@ -17,8 +17,7 @@ import java.sql.SQLException;
 
 import static com.example.restaurantmanagement.Database.DishService.getDataDishForKitchen;
 
-public class KitchenJobController extends BaseController {
-
+public class KitchenJob extends BaseRoleController {
     @FXML
     private TableColumn<?, ?> cooking_number_column;
 
@@ -58,9 +57,9 @@ public class KitchenJobController extends BaseController {
 
     @FXML
     void initialize() throws SQLException {
-        cooking_number_column.setCellValueFactory(new PropertyValueFactory<>("idordered_dish"));
-        name_column.setCellValueFactory(new PropertyValueFactory<>("dish_name"));
-        type_column.setCellValueFactory(new PropertyValueFactory<>("dish_type"));
+        cooking_number_column.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
+        type_column.setCellValueFactory(new PropertyValueFactory<>("type"));
         status_column.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         cooking_table.setItems(getDataDishForKitchen());

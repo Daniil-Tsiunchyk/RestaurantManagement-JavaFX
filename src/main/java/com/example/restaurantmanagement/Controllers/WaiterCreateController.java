@@ -13,9 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import static com.example.restaurantmanagement.Database.DishService.addOrderAndOrderedDishes;
+import static com.example.restaurantmanagement.Database.DishService.getDataDishWithType;
+
 public class WaiterCreateController {
     ObservableList<Dish> list = FXCollections.observableArrayList();
-
     @FXML
     private TableColumn<Dish, String> category_column;
     @FXML
@@ -35,7 +37,7 @@ public class WaiterCreateController {
     void handleAddDish(ActionEvent event) throws SQLException {
         Button button = (Button) event.getSource();
         int typeId = Integer.parseInt(button.getUserData().toString());
-        order_table.setItems(DishService.getDataDishWithType(typeId));
+        order_table.setItems(getDataDishWithType(typeId));
     }
 
     @FXML
@@ -61,7 +63,7 @@ public class WaiterCreateController {
                 }
                 totalPrice = totalPrice.add(dish.getCost());
             }
-            DishService.addOrderAndOrderedDishes(list, String.valueOf(names), totalPrice, tables_choicebox.getValue());
+            addOrderAndOrderedDishes(list, String.valueOf(names), totalPrice, tables_choicebox.getValue());
             FxUtils.changeScene("WaiterView.fxml", "Просмотр заказов", 800, 450, event);
         } else System.out.println("Сделать вывод ошибки, мол, не выбран столик или заказ пуст");
 
@@ -73,7 +75,7 @@ public class WaiterCreateController {
     }
 
     private void updateTable() throws SQLException {
-        number_column.setCellValueFactory(new PropertyValueFactory<>("iddish"));
+        number_column.setCellValueFactory(new PropertyValueFactory<>("id"));
         name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
         category_column.setCellValueFactory(new PropertyValueFactory<>("type"));
         price_column.setCellValueFactory(new PropertyValueFactory<>("cost"));
