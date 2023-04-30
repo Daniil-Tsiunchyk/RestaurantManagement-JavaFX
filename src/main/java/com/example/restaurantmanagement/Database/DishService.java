@@ -125,4 +125,42 @@ public class DishService {
             }
         }
     }
+
+    public static ObservableList<OrderedDish> getDataServedDishes() throws SQLException {
+        ObservableList<OrderedDish> list = FXCollections.observableArrayList();
+        String select = "";
+        try (Connection connection = getDbConnection();
+             PreparedStatement ps = connection.prepareStatement(select);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                list.add(mapResultSetToOrderdDish(rs));
+            }
+
+        }
+        return list;
+    }
+
+    private static OrderedDish mapResultSetToOrderdDish(ResultSet rs) throws SQLException {
+        return new OrderedDish(
+                rs.getInt("idordered_dish"),
+                rs.getString("dish_name"),
+                rs.getString("dish_type"),
+                rs.getString("status")
+        );
+    }
+
+    public static void updateOrderedDishStatus(int id, String status) {
+
+        String updateQuery = "UPDATE ordered_dish SET status = ? WHERE idordered_dish = ?";
+
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
+            preparedStatement.setString(1, status);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

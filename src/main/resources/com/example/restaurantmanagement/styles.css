@@ -160,3 +160,9 @@
 .choice-box .menu-item:selected {
     -fx-background-color: #d0d0d0;
 }
+.button-image-1 {
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

@@ -49,19 +49,22 @@ public class WaiterCreateController {
 
     @FXML
     void handleNewOrder(ActionEvent event) throws SQLException {
-        StringBuilder names = new StringBuilder();
-        BigDecimal totalPrice = BigDecimal.ZERO;
+        if (tables_choicebox.getValue() != null && list.size() != 0) {
+            StringBuilder names = new StringBuilder();
+            BigDecimal totalPrice = BigDecimal.ZERO;
 
-        for (int i = 0; i < list.size(); i++) {
-            Dish dish = list.get(i);
-            names.append(dish.getName());
-            if (i != list.size() - 1) {
-                names.append(", ");
+            for (int i = 0; i < list.size(); i++) {
+                Dish dish = list.get(i);
+                names.append(dish.getName());
+                if (i != list.size() - 1) {
+                    names.append(", ");
+                }
+                totalPrice = totalPrice.add(dish.getCost());
             }
-            totalPrice = totalPrice.add(dish.getCost());
-        }
-        DishService.addOrderAndOrderedDishes(list, String.valueOf(names), totalPrice, tables_choicebox.getValue());
-        FxUtils.changeScene("WaiterView.fxml", "Просмотр заказов", 800, 450, event);
+            DishService.addOrderAndOrderedDishes(list, String.valueOf(names), totalPrice, tables_choicebox.getValue());
+            FxUtils.changeScene("WaiterView.fxml", "Просмотр заказов", 800, 450, event);
+        } else System.out.println("Сделать вывод ошибки, мол, не выбран столик или заказ пуст");
+
     }
 
     @FXML
@@ -115,7 +118,6 @@ public class WaiterCreateController {
     void initialize() throws SQLException {
         ObservableList<Integer> tables = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9);
         tables_choicebox.setItems(tables);
-        tables_choicebox.setValue(1);
         updateTable();
     }
 }

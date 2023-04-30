@@ -1,7 +1,6 @@
 package com.example.restaurantmanagement.Database;
 
 import com.example.restaurantmanagement.Entities.Staff;
-import com.example.restaurantmanagement.Enums.Role;
 import com.example.restaurantmanagement.Utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +10,8 @@ import java.sql.*;
 import static com.example.restaurantmanagement.Utils.DBConnection.getDbConnection;
 
 public class StaffService {
-    public static Role requestRoleFromDataBase(String username, String password) throws SQLException {
-        Role role = null;
+    public static String requestRoleFromDataBase(String username, String password) throws SQLException {
+        String role = null;
 
         String select = "SELECT role FROM staff WHERE login=? AND password=? AND dismissal_from_work IS NULL";
 
@@ -24,7 +23,7 @@ public class StaffService {
             ResultSet resSet = prSt.executeQuery();
 
             if (resSet.next()) {
-                role = Role.valueOf(resSet.getString("role"));
+                role = resSet.getString("role");
             }
         }
         return role;
@@ -50,20 +49,20 @@ public class StaffService {
                 rs.getString("name"),
                 rs.getString("login"),
                 rs.getString("password"),
-                Role.valueOf(rs.getString("role")),
+                rs.getString("role"),
                 rs.getDate("apparatus_employed"),
                 rs.getDate("dismissal_from_work")
         );
     }
 
-    public static void createUser(String name, String login, String password, Role role) {
+    public static void createUser(String name, String login, String password, String role) {
         String insertQuery = "INSERT INTO staff (name, login, password, role, apparatus_employed) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(insertQuery)) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, login);
             preparedStatement.setString(3, password);
-            preparedStatement.setString(4, role.name());
+            preparedStatement.setString(4, role);
             preparedStatement.setDate(5, new Date(System.currentTimeMillis()));
 
             preparedStatement.executeUpdate();
@@ -72,11 +71,11 @@ public class StaffService {
         }
     }
 
-    public static void updateUser(int id, Role role) {
+    public static void updateUser(int id, String role) {
         String updateQuery = "UPDATE staff SET role = ? WHERE idstaff = ?";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
-            preparedStatement.setString(1, role.name());
+            preparedStatement.setString(1, role);
             preparedStatement.setInt(2, id);
 
             preparedStatement.executeUpdate();

@@ -2,21 +2,10 @@ package com.example.restaurantmanagement.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class ManagerJobController {
-
-
-    @FXML
-    private Label handleHello;
-
-    @FXML
-    void handleLogout(ActionEvent event) {
-        changeScene("Authorisation.fxml", "Авторизация", 250, 275, event);
-
-    }
+public class ManagerJobController extends BaseController {
 
     @FXML
     void handleOrdersManagement(ActionEvent event) {

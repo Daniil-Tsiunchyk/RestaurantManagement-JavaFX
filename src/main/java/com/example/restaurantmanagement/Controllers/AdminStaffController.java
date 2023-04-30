@@ -1,7 +1,6 @@
 package com.example.restaurantmanagement.Controllers;
 
 import com.example.restaurantmanagement.Entities.Staff;
-import com.example.restaurantmanagement.Enums.Role;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,10 +44,10 @@ public class AdminStaffController {
     private PasswordField repeat_password;
 
     @FXML
-    private ChoiceBox<Role> role_choicebox;
+    private ChoiceBox<String> role_choicebox;
 
     @FXML
-    private TableColumn<Staff, Role> role_column;
+    private TableColumn<Staff, String> role_column;
 
     @FXML
     private TableView<Staff> staff_table;
@@ -65,7 +64,7 @@ public class AdminStaffController {
         String login = enter_login.getText();
         String password = enter_password.getText();
         String repeatPassword = repeat_password.getText();
-        Role role = role_choicebox.getSelectionModel().getSelectedItem();
+        String role = role_choicebox.getSelectionModel().getSelectedItem();
         if (name.isEmpty() || login.isEmpty() || password.isEmpty() || role == null) {
             error_message.setText("Пожалуйста, заполните все поля и выберите роль");
             return;
@@ -89,12 +88,13 @@ public class AdminStaffController {
             error_message.setText("Пожалуйста, выберите сотрудника");
             return;
         }
-        Role role = selectedStaff.getRole();
-        Role newRole = switch (role) {
-            case WAITER -> Role.KITCHEN;
-            case KITCHEN -> Role.MANAGER;
-            case MANAGER -> Role.ADMINISTRATOR;
-            case ADMINISTRATOR -> Role.WAITER;
+        String role = selectedStaff.getRole();
+        String newRole = switch (role) {
+            case "ОФИЦИАНТ" -> "КУХНЯ";
+            case "КУХНЯ" -> "МЕНЕДЖЕР";
+            case "МЕНЕДЖЕР" -> "АДМИНИСТРАТОР";
+            case "АДМИНИСТРАТОР" -> "ОФИЦИАНТ";
+            default -> throw new IllegalStateException("Unexpected value: " + role);
         };
 
         updateUser(selectedStaff.getIdstaff(), newRole);
@@ -143,7 +143,7 @@ public class AdminStaffController {
 
     @FXML
     void initialize() throws SQLException {
-        ObservableList<Role> roles = FXCollections.observableArrayList(Role.values());
+        ObservableList<String> roles = FXCollections.observableArrayList("ОФИЦИАНТ", "КУХНЯ", "МЕНЕДЖЕР", "АДМИНИСТРАТОР");
         role_choicebox.setItems(roles);
         updateTable();
     }

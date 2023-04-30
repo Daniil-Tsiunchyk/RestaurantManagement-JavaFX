@@ -16,9 +16,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import static com.example.restaurantmanagement.Database.DishService.getDataDishForKitchen;
-import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
-public class KitchenJobController {
+public class KitchenJobController extends BaseController {
 
     @FXML
     private TableColumn<?, ?> cooking_number_column;
@@ -52,12 +51,6 @@ public class KitchenJobController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    @FXML
-    void handleLogout(ActionEvent event) {
-        changeScene("Authorisation.fxml", "Авторизация", 250, 275, event);
-    }
-
 
     @FXML
     void handleUpdateOrderStatus(ActionEvent event) {

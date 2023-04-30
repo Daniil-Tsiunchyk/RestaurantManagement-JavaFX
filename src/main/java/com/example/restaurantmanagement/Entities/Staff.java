@@ -1,7 +1,5 @@
 package com.example.restaurantmanagement.Entities;
 
-import com.example.restaurantmanagement.Enums.Role;
-
 import java.sql.Date;
 
 public class Staff {
@@ -9,11 +7,11 @@ public class Staff {
     String name;
     String login;
     String password;
-    Role role;
+    String role;
     Date apparatus_employed;
     Date dismissal_from_work;
 
-    public Staff(int idstaff, String name, String login, String password, Role role, Date apparatus_employed, Date dismissal_from_work) {
+    public Staff(int idstaff, String name, String login, String password, String role, Date apparatus_employed, Date dismissal_from_work) {
         this.idstaff = idstaff;
         this.name = name;
         this.login = login;
@@ -55,11 +53,11 @@ public class Staff {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.Controllers;
 
-import com.example.restaurantmanagement.Enums.Role;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +30,7 @@ public class AuthorisationController {
             return;
         }
 
-        Role role = requestRoleFromDataBase(username, password);
+        String role = requestRoleFromDataBase(username, password);
         if (role == null) {
             statusLabel.setText("Неверный логин или пароль.");
         } else {
@@ -39,31 +38,31 @@ public class AuthorisationController {
         }
     }
 
-    private void openRoleInterface(Role role, ActionEvent event) {
+    private void openRoleInterface(String role, ActionEvent event) {
         String fxmlFile;
         String title;
         int width, height;
 
         switch (role) {
-            case WAITER -> {
+            case "ОФИЦИАНТ" -> {
                 fxmlFile = "WaiterJob.fxml";
                 title = "Панель официанта";
                 width = 240;
                 height = 275;
             }
-            case MANAGER -> {
+            case "МЕНЕДЖЕР" -> {
                 fxmlFile = "ManagerJob.fxml";
                 title = "Панель менеджера";
                 width = 270;
                 height = 300;
             }
-            case KITCHEN -> {
+            case "КУХНЯ" -> {
                 fxmlFile = "KitchenJob.fxml";
                 title = "Панель кухни";
                 width = 800;
                 height = 500;
             }
-            case ADMINISTRATOR -> {
+            case "АДМИНИСТРАТОР" -> {
                 fxmlFile = "AdminJob.fxml";
                 title = "Панель администратора";
                 width = 250;

@@ -5,18 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import static com.example.restaurantmanagement.Utils.FxUtils.changeScene;
 
 public class AdminOrdersController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TableColumn<?, ?> end_time;
