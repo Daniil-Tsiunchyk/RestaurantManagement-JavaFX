@@ -32,7 +32,7 @@
    <Label layoutX="775.0" layoutY="16.0" text="Новое блюдо" />
    <TextField fx:id="enter_name" layoutX="741.0" layoutY="72.0" promptText="Введите название" />
    <TextField fx:id="enter_price" layoutX="741.0" layoutY="116.0" promptText="Введите цену" />
-   <Button layoutX="762.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleAddAccount" prefWidth="130.0" text="Добавить" />
+   <Button layoutX="762.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleAddDish" prefWidth="130.0" text="Добавить" />
    <Label layoutX="218.0" layoutY="521.0" text="Нажмите на интересующее вас блюдо" />
    <Separator layoutX="133.0" layoutY="513.0" orientation="VERTICAL" prefHeight="75.0" />
    <Label fx:id="error_message" layoutX="567.0" layoutY="554.0" />

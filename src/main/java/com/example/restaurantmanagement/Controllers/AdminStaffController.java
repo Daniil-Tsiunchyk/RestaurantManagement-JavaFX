@@ -97,7 +97,7 @@ public class AdminStaffController {
             default -> throw new IllegalStateException("Unexpected value: " + role);
         };
 
-        updateUser(selectedStaff.getIdstaff(), newRole);
+        updateUser(selectedStaff.getId(), newRole);
         updateTable();
     }
 
@@ -109,7 +109,7 @@ public class AdminStaffController {
             return;
         }
 
-        deleteUser(selectedStaff.getIdstaff());
+        deleteUser(selectedStaff.getId());
         updateTable();
     }
 
@@ -120,7 +120,7 @@ public class AdminStaffController {
             error_message.setText("Пожалуйста, выберите сотрудника");
             return;
         }
-        dismissStaff(selectedStaff.getIdstaff());
+        dismissStaff(selectedStaff.getId());
         updateTable();
     }
 
@@ -130,7 +130,7 @@ public class AdminStaffController {
     }
 
     void updateTable() throws SQLException {
-        number_column.setCellValueFactory(new PropertyValueFactory<>("idstaff"));
+        number_column.setCellValueFactory(new PropertyValueFactory<>("id"));
         name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
         login_column.setCellValueFactory(new PropertyValueFactory<>("login"));
         password_column.setCellValueFactory(new PropertyValueFactory<>("password"));

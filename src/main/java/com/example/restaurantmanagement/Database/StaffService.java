@@ -43,7 +43,7 @@ public class StaffService extends DBConnection {
 
     private static Staff mapResultSetToStaff(ResultSet rs) throws SQLException {
         return new Staff(
-                rs.getInt("idstaff"),
+                rs.getInt("id"),
                 rs.getString("name"),
                 rs.getString("login"),
                 rs.getString("password"),
@@ -70,7 +70,7 @@ public class StaffService extends DBConnection {
     }
 
     public static void updateUser(int id, String role) {
-        String updateQuery = "UPDATE staff SET role = ? WHERE idstaff = ?";
+        String updateQuery = "UPDATE staff SET role = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
             preparedStatement.setString(1, role);
@@ -83,7 +83,7 @@ public class StaffService extends DBConnection {
     }
 
     public static void deleteUser(int id) {
-        String deleteQuery = "DELETE FROM staff WHERE idstaff = ?";
+        String deleteQuery = "DELETE FROM staff WHERE id = ?";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(deleteQuery)) {
             preparedStatement.setInt(1, id);
@@ -95,7 +95,7 @@ public class StaffService extends DBConnection {
     }
 
     public static void dismissStaff(int id) {
-        String updateQuery = "UPDATE staff SET dismissal_from_work = ? WHERE idstaff = ?";
+        String updateQuery = "UPDATE staff SET dismissal_from_work = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(updateQuery)) {
             preparedStatement.setDate(1, new Date(System.currentTimeMillis()));

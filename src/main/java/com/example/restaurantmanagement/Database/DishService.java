@@ -233,4 +233,36 @@ public class DishService extends DBConnection {
         }
     }
 
+    public static void createDish(String name, String category, BigDecimal price) throws SQLException {
+        String insert = "INSERT INTO dishes (name, type_id, cost) VALUES (?, (SELECT id FROM dish_types WHERE name = ?), ?)";
+
+        try (PreparedStatement insertDishStatement = getDbConnection().prepareStatement(insert)) {
+            insertDishStatement.setString(1, name);
+            insertDishStatement.setString(2, category);
+            insertDishStatement.setBigDecimal(3, price);
+            insertDishStatement.executeUpdate();
+        }
+    }
+
+    public static void deleteDish(int id) throws SQLException {
+        String delete = "DELETE FROM dishes WHERE id = ?";
+
+        try (PreparedStatement deleteDishStatement = getDbConnection().prepareStatement(delete)) {
+            deleteDishStatement.setInt(1, id);
+            deleteDishStatement.executeUpdate();
+        }
+    }
+
+    public static void updateDish(int id, String name, String category, BigDecimal price) throws SQLException {
+        String update = "UPDATE dishes SET name = ?, type_id = (SELECT id FROM dish_types WHERE name = ?), cost = ? WHERE id = ?";
+
+        try (PreparedStatement updateDishStatement = getDbConnection().prepareStatement(update)) {
+            updateDishStatement.setString(1, name);
+            updateDishStatement.setString(2, category);
+            updateDishStatement.setBigDecimal(3, price);
+            updateDishStatement.setInt(4, id);
+            updateDishStatement.executeUpdate();
+        }
+    }
+
 }

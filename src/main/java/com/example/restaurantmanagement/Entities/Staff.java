@@ -3,7 +3,7 @@ package com.example.restaurantmanagement.Entities;
 import java.sql.Date;
 
 public class Staff {
-    int idstaff;
+    int id;
     String name;
     String login;
     String password;
@@ -11,8 +11,8 @@ public class Staff {
     Date apparatus_employed;
     Date dismissal_from_work;
 
-    public Staff(int idstaff, String name, String login, String password, String role, Date apparatus_employed, Date dismissal_from_work) {
-        this.idstaff = idstaff;
+    public Staff(int id, String name, String login, String password, String role, Date apparatus_employed, Date dismissal_from_work) {
+        this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
@@ -21,12 +21,12 @@ public class Staff {
         this.dismissal_from_work = dismissal_from_work;
     }
 
-    public int getIdstaff() {
-        return idstaff;
+    public int getId() {
+        return id;
     }
 
-    public void setIdstaff(int idstaff) {
-        this.idstaff = idstaff;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
