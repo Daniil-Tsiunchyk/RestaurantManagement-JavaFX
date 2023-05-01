@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantmanagement.Controllers.KitchenJob">
     <Label layoutX="282.0" layoutY="14.0" text="Заказы в очереди" />
-    <TableView fx:id="cooking_table" layoutX="69.0" layoutY="53.0" prefHeight="366.0" prefWidth="564.0">
+    <TableView fx:id="cooking_table" layoutX="68.0" layoutY="47.0" prefHeight="366.0" prefWidth="564.0">
         <columns>
             <TableColumn fx:id="cooking_number_column" prefWidth="34.40002250671387" text="№" />
             <TableColumn fx:id="name_column" prefWidth="247.19995880126953" text="Название" />
@@ -17,7 +17,7 @@
             <TableColumn fx:id="status_column" prefWidth="108.0" text="Статус" />
         </columns>
     </TableView>
-    <Button layoutX="213.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" prefHeight="40.0" prefWidth="170.0" text="Начать приготовление">
+    <Button layoutX="213.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" prefHeight="40.0" prefWidth="170.0" text="Начать приготовление" userData="1">
         <cursor>
             <Cursor fx:constant="OPEN_HAND" />
         </cursor>
@@ -32,7 +32,7 @@
             <Cursor fx:constant="OPEN_HAND" />
         </cursor>
     </Button>
-   <Button layoutX="405.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" prefHeight="40.0" prefWidth="170.0" text="Блюдо готово">
+   <Button layoutX="405.0" layoutY="446.0" mnemonicParsing="false" onAction="#handleUpdateOrderStatus" prefHeight="40.0" prefWidth="170.0" text="Блюдо готово" userData="2">
       <cursor>
          <Cursor fx:constant="OPEN_HAND" />
       </cursor>

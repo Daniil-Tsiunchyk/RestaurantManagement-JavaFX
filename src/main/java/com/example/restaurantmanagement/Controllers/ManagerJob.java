@@ -15,7 +15,7 @@ public class ManagerJob extends BaseRoleController {
 
     @FXML
     void handleTableManagement(ActionEvent event) {
-        changeScene("ManagerTables.fxml", "Работа со столиками", 800, 450, event);
+        changeScene("ManagerTables.fxml", "Работа со столиками", 280, 390, event);
 
     }
 

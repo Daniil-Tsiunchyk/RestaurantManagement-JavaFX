@@ -12,7 +12,6 @@ public class StaffService extends DBConnection {
         String role = null;
 
         String select = "SELECT role FROM staff WHERE login=? AND password=? AND dismissal_from_work IS NULL";
-
         try (Connection connection = DBConnection.getDbConnection();
              PreparedStatement prSt = connection.prepareStatement(select)) {
 

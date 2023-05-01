@@ -109,12 +109,6 @@ public class AdminDishesController {
 
         dishes_table.setItems(getDataDish());
 
-
-        //Этот код устанавливает фабрику строк для таблицы,
-        // что позволяет обрабатывать щелчок мыши на строке.
-        // Если пользователь дважды щелкнет мышью по строке,
-        // информация выбранного блюда будет отображаться
-        // в полях update_name, update_price и update_category.
         dishes_table.setRowFactory(tv -> {
             TableRow<Dish> row = new TableRow<>();
             row.setOnMouseClicked(event -> {

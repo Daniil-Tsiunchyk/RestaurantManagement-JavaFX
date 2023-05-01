@@ -14,11 +14,12 @@ public class DishService extends DBConnection {
     public static ObservableList<OrderedDish> getDataDishForKitchen() throws SQLException {
         ObservableList<OrderedDish> list = FXCollections.observableArrayList();
         String select = """
-                SELECT ordered_dish.id AS idordered_dish, dishes.name AS dish_name, dish_types.name AS dish_type, ordered_dish.status
-                FROM ordered_dish
-                JOIN dishes ON ordered_dish.dish_id = dishes.id
-                JOIN dish_types ON dishes.type_id = dish_types.id;
-                """;
+                SELECT ordered_dish.id AS id, dishes.name AS name, dish_types.name AS type, ordered_dish.status
+                                                FROM ordered_dish
+                                                JOIN dishes ON ordered_dish.dish_id = dishes.id
+                                                JOIN dish_types ON dishes.type_id = dish_types.id
+                                                WHERE status = 'OPEN' or status = 'PREPARING' or status = 'RETURNED';
+                               """;
         try (Connection connection = getDbConnection();
              PreparedStatement ps = connection.prepareStatement(select);
              ResultSet rs = ps.executeQuery()) {
@@ -192,8 +193,8 @@ public class DishService extends DBConnection {
                         WHEN (
                             SELECT COUNT(*)
                             FROM ordered_dish
-                            WHERE order_id = orders.id AND status = 'OPEN'
-                        ) > 0 THEN 'PREPARED'
+                            WHERE order_id = orders.id AND status = 'PREPARING'
+                        ) > 0 THEN 'PREPARING'
                         ELSE orders.status
                     END,
                                 end_time = IF((
