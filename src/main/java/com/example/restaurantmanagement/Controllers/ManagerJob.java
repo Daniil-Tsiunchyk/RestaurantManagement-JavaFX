@@ -21,9 +21,7 @@ public class ManagerJob extends BaseRoleController {
 
     @FXML
     void handleWorkManagement(ActionEvent event) {
-        changeScene("ManagerHours.fxml", "Работа со сменами", 800, 450, event);
+        changeScene("ManagerHours.fxml", "Работа со сменами", 1100, 600, event);
 
     }
-
-
 }

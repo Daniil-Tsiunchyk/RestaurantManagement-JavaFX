@@ -7,41 +7,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="387.0" prefWidth="276.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.restaurantmanagement.Controllers.ManagerTablesController">
-   <Label text="Бронирование столика">
-      <font>
-         <Font size="16.0"/>
-      </font>
-   </Label>
-   <Label fx:id="errorMsg">
-      <font>
-         <Font size="16.0"/>
-      </font>
-   </Label>
-   <Label>
-      <font>
-         <Font size="16.0"/>
-      </font>
-   </Label>
-   <ComboBox fx:id="tableChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="175.0"
-             promptText="№ столика"/>
-   <Label/>
-   <ComboBox fx:id="DateChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0"
-             promptText="Дата"/>
-   <Label/>
-   <ComboBox fx:id="TimeChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0"
-             promptText="Время"/>
-   <Label/>
-   <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0"
-              promptText="На кого"/>
-   <Label/>
-   <Button maxHeight="-Infinity" maxWidth="125.0" mnemonicParsing="false" onAction="#handleBooking" prefHeight="25.0"
-           text="Забронировать"/>
-   <Label/>
-   <Button maxHeight="-Infinity" maxWidth="125.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="25.0"
-           text="Назад"/>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="280.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantmanagement.Controllers.ManagerTablesController">
+   <children>
+      <Label text="Бронирование столика">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorMsg">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tableChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="175.0" promptText="№ столика" />
+      <Label />
+      <ComboBox fx:id="DateChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Дата" />
+      <Label />
+      <ComboBox fx:id="TimeChoice" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0" promptText="Время" />
+      <Label />
+      <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="175.0" prefHeight="25.0" prefWidth="150.0" promptText="На кого" />
+      <Label />
+      <Button maxHeight="-Infinity" maxWidth="125.0" mnemonicParsing="false" onAction="#handleBooking" prefHeight="25.0" text="Забронировать" />
+      <Label />
+      <Button maxHeight="-Infinity" maxWidth="125.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="25.0" text="Назад" />
+   </children>
 </VBox>

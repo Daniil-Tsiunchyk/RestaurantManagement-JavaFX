@@ -1,27 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
-            prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.restaurantmanagement.Controllers.ManagerHoursController">
-    <TableView fx:id="order_table" fixedCellSize="0.0" layoutX="30.0" layoutY="65.0" prefHeight="327.0"
-               prefWidth="760.0">
-        <columns>
-            <TableColumn fx:id="number_column" prefWidth="31.200014114379883" text="№"/>
-            <TableColumn fx:id="order_column" prefWidth="161.5999412536621" text="Заказ"/>
-            <TableColumn fx:id="price_column" prefWidth="128.80006408691406" text="Стоимость"/>
-            <TableColumn fx:id="start_time" prefWidth="180.79998779296875" text="Время заказа"/>
-            <TableColumn fx:id="end_time" prefWidth="152.0" text="Время выдачи"/>
-            <TableColumn fx:id="status_column" prefWidth="92.7999267578125" text="Статус"/>
-        </columns>
-    </TableView>
-    <Label layoutX="328.0" layoutY="21.0" text="Список заказов">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantmanagement.Controllers.ManagerHoursController">
+    <Label layoutX="401.0" layoutY="14.0" text="Назначение смен">
         <font>
-            <Font size="16.0"/>
+            <Font size="16.0" />
         </font>
     </Label>
-    <Button layoutX="361.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleBack" text="Назад"/>
+    <Button layoutX="942.0" layoutY="526.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" text="Назад" />
+   <TableView fx:id="waiterTable" layoutX="28.0" layoutY="111.0" onMouseClicked="#populateFields" prefHeight="400.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="numberWaiter" prefWidth="75.0" text="№" />
+       <TableColumn fx:id="nameWaiter" prefWidth="115.20001220703125" text="Имя" />
+     </columns>
+   </TableView>
+   <TableView fx:id="kitchenTable" layoutX="228.0" layoutY="111.0" onMouseClicked="#populateFields" prefHeight="400.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="numberKitchen" prefWidth="75.0" text="№" />
+       <TableColumn fx:id="nameKitchen" prefWidth="112.79998779296875" text="Имя" />
+     </columns>
+   </TableView>
+   <TableView fx:id="managerTable" layoutX="434.0" layoutY="111.0" onMouseClicked="#populateFields" prefHeight="400.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="numberManager" prefWidth="75.0" text="№" />
+       <TableColumn fx:id="nameManager" prefWidth="116.0" text="Имя" />
+     </columns>
+   </TableView>
+   <TableView fx:id="adminTable" layoutX="634.0" layoutY="111.0" onMouseClicked="#populateFields" prefHeight="400.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="numberAdmin" prefWidth="75.0" text="№" />
+       <TableColumn fx:id="nameAdmin" prefWidth="113.60003662109375" text="Имя" />
+     </columns>
+   </TableView>
+   <Label layoutX="83.0" layoutY="79.0" text="Официанты">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="306.0" layoutY="79.0" text="Кухня">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="487.0" layoutY="79.0" text="Менеджеры">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="668.0" layoutY="79.0" text="Администраторы">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="dateChoice" layoutX="350.0" layoutY="526.0" prefHeight="35.0" prefWidth="150.0" promptText="Дата" />
+   <TableView fx:id="hoursTable" layoutX="874.0" layoutY="47.0" prefHeight="467.0" prefWidth="200.0">
+      <columns>
+         <TableColumn fx:id="columnHours" prefWidth="75.0" text="№" />
+         <TableColumn fx:id="columnDate" prefWidth="113.60015869140625" text="Дата" />
+      </columns>
+   </TableView>
+   <Label layoutX="892.0" layoutY="14.0" text="Смены в этом месяце">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <TextField fx:id="nameField" layoutX="128.0" layoutY="525.0" prefHeight="35.0" promptText="Имя" />
+   <TextField fx:id="numberField" layoutX="65.0" layoutY="526.0" prefHeight="35.0" prefWidth="35.0" promptText="№" />
+   <Button layoutX="542.0" layoutY="525.0" mnemonicParsing="false" onAction="#handleAddHours" prefHeight="35.0" text="Добавить" />
+   <Label fx:id="monthHours" layoutX="678.0" layoutY="530.0" text="Смен за месяц" />
 </AnchorPane>
