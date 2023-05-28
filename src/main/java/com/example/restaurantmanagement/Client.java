@@ -18,11 +18,9 @@ public class Client {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-            // Отправка запроса серверу
             String request = "SomeRequest";
             writer.println(request);
 
-            // Получение ответа от сервера
             String response = reader.readLine();
             System.out.println("Received response: " + response);
         } catch (UnknownHostException ex) {

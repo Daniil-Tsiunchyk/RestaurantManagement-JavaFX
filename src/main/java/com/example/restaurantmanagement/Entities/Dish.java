@@ -14,14 +14,6 @@ public class Dish {
         this.type = type;
     }
 
-    public Dish(int id, int recipe_id, String name, BigDecimal cost, String type) {
-        this.id = id;
-        this.recipe_id = recipe_id;
-        this.name = name;
-        this.cost = cost;
-        this.type = type;
-    }
-
     public Dish(int id, String name, BigDecimal cost, String type) {
         this.id = id;
         this.name = name;

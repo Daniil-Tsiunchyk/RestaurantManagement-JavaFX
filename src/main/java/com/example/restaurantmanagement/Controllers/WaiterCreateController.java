@@ -41,7 +41,7 @@ public class WaiterCreateController {
     }
 
     @FXML
-    void handleDishDeleteFromOrder(ActionEvent event) {
+    void handleDishDeleteFromOrder() {
         Dish selectedItem = order_table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             list.remove(selectedItem);
@@ -83,19 +83,19 @@ public class WaiterCreateController {
     }
 
     @FXML
-    void handleOrderReset(ActionEvent event) {
+    void handleOrderReset() {
         list.clear();
         order_table.setItems(list);
         updateTotalPrice();
     }
 
     @FXML
-    void handleCategoryReset(ActionEvent event) {
+    void handleCategoryReset() {
         order_table.setItems(list);
     }
 
     @FXML
-    void handleAddToOrder(ActionEvent event) {
+    void handleAddToOrder() {
         Dish selectedItem = order_table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             addDishToOrder(selectedItem);

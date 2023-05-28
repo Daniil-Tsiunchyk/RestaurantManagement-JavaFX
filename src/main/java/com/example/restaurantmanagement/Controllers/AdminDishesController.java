@@ -55,10 +55,10 @@ public class AdminDishesController {
     private TextField update_price;
 
     @FXML
-    void handleAddDish(ActionEvent event) throws SQLException {
+    void handleAddDish() throws SQLException {
         String name = enter_name.getText();
         String category = choice_category.getSelectionModel().getSelectedItem();
-        BigDecimal price = BigDecimal.valueOf(0);
+        BigDecimal price;
         try {
             price = BigDecimal.valueOf(Double.parseDouble(enter_price.getText()));
         } catch (NumberFormatException e) {
@@ -81,7 +81,7 @@ public class AdminDishesController {
     }
 
     @FXML
-    void handleDeleteDish(ActionEvent event) throws SQLException {
+    void handleDeleteDish() throws SQLException {
         Dish selectedDish = dishes_table.getSelectionModel().getSelectedItem();
         if (selectedDish == null) {
             error_message.setText("Пожалуйста, выберите блюдо");
@@ -92,8 +92,8 @@ public class AdminDishesController {
     }
 
     @FXML
-    void handleUpdateDish(ActionEvent event) throws SQLException {
-        //
+    void handleUpdateDish() throws SQLException {
+
         updateDish(dishes_table.getSelectionModel().getSelectedItem().getId(), update_name.getText(), update_category.getValue(), BigDecimal.valueOf(Double.parseDouble(update_price.getText())));
         update_name.setText("");
         update_price.setText("");

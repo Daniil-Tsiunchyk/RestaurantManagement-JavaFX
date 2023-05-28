@@ -64,7 +64,7 @@ public class KitchenJob extends BaseRoleController {
     }
 
     @FXML
-    void handeGetInfo(ActionEvent event) {
+    void handeGetInfo() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("KitchenRecipe.fxml"));
 

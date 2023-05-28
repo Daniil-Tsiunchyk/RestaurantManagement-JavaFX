@@ -1,6 +1,5 @@
 package com.example.restaurantmanagement.Controllers;
 
-import com.example.restaurantmanagement.Database.StaffService;
 import com.example.restaurantmanagement.Entities.Staff;
 import com.example.restaurantmanagement.Entities.WorkHours;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.restaurantmanagement.Database.StaffService.*;
@@ -81,7 +79,7 @@ public class ManagerHoursController {
 
 
     @FXML
-    void handleAddHours(ActionEvent event) {
+    void handleAddHours() {
         int staffId = Integer.parseInt(numberField.getText());
         LocalDate date = dateChoice.getValue();
 

@@ -75,7 +75,7 @@ public class AuthorisationController {
     }
 
     @FXML
-    void handleExit(ActionEvent event) {
+    void handleExit() {
         Platform.exit();
     }
 }

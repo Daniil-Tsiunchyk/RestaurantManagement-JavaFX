@@ -40,7 +40,7 @@ public class ManagerTablesController {
     }
 
     @FXML
-    void handleBooking(ActionEvent event) throws SQLException {
+    void handleBooking() throws SQLException {
 
         if (areFieldsFilled()) {
             errorMsg.setText(bookingTable(tableChoice.getValue(), DateChoice.getValue(), TimeChoice.getValue(), nameField.getText()));

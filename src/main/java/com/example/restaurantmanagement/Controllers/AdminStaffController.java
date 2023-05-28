@@ -59,7 +59,7 @@ public class AdminStaffController {
     private Label error_message;
 
     @FXML
-    void handleAddAccount(ActionEvent event) throws SQLException {
+    void handleAddAccount() throws SQLException {
         String name = enter_name.getText();
         String login = enter_login.getText();
         String password = enter_password.getText();
@@ -82,7 +82,7 @@ public class AdminStaffController {
     }
 
     @FXML
-    void handleChangeRole(ActionEvent event) throws SQLException {
+    void handleChangeRole() throws SQLException {
         Staff selectedStaff = staff_table.getSelectionModel().getSelectedItem();
         if (selectedStaff == null) {
             error_message.setText("Пожалуйста, выберите сотрудника");
@@ -102,7 +102,7 @@ public class AdminStaffController {
     }
 
     @FXML
-    void handleDeleteAccount(ActionEvent event) throws SQLException {
+    void handleDeleteAccount() throws SQLException {
         Staff selectedStaff = staff_table.getSelectionModel().getSelectedItem();
         if (selectedStaff == null) {
             error_message.setText("Пожалуйста, выберите сотрудника");
@@ -114,7 +114,7 @@ public class AdminStaffController {
     }
 
     @FXML
-    void handleDismissStaff(ActionEvent event) throws SQLException {
+    void handleDismissStaff() throws SQLException {
         Staff selectedStaff = staff_table.getSelectionModel().getSelectedItem();
         if (selectedStaff == null) {
             error_message.setText("Пожалуйста, выберите сотрудника");

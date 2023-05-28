@@ -13,12 +13,6 @@ public class WorkHours {
     private final ObjectProperty<LocalDate> date;
     private int hours;
 
-    public WorkHours(int id, int staffId, LocalDate date) {
-        this.id = new SimpleIntegerProperty(id);
-        this.staffId = new SimpleIntegerProperty(staffId);
-        this.date = new SimpleObjectProperty<>(date);
-    }
-
     public WorkHours(int id, int staffId, LocalDate date, int hours) {
         this.id = new SimpleIntegerProperty(id);
         this.staffId = new SimpleIntegerProperty(staffId);
